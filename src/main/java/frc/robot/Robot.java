@@ -89,10 +89,13 @@ public class Robot extends TimedRobot {
 
 
     
-    // UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
-    // cam0.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
-    // UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
-    // cam1.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
+
+
+
+    //UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
+    //cam0.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
+    //UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
+    //cam1.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
   }
 
   @Override
@@ -128,6 +131,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     elevator.resetEncoder();
+    RobotMap.compressor.stop();
     climbingFlag = false;
     disableVacumSwitch = false;
     commandFlag = false;
@@ -152,10 +156,6 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     if (disableVacumSwitch)
     {
-      if (m_ds.getMatchTime() - time < 5)
-        m_oi.joystickDriver.setRumble(RumbleType.kLeftRumble,1);
-      else
-        m_oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0);
     }
     SmartDashboardPerodic();
   }

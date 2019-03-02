@@ -43,17 +43,17 @@ public class MoveGripperToMid extends Command {
         opticAmount = 3;
         if (RobotMap.opticalEncoder.get() == 2)
         {
-          gripper.setGripperSpeed(0.9);
+          gripper.setGripperSpeed(-0.9);
         }
         else{
-          gripper.setGripperSpeed(1);
+          gripper.setGripperSpeed(-1);
         }
         break;
       }
       case Bottom: 
       {
         opticAmount = 6;
-        gripper.setGripperSpeed(-1);
+        gripper.setGripperSpeed(1);
         break;
       }
     }

@@ -44,10 +44,10 @@ public class MoveGripperToFloor extends Command {
         opticAmount = 6;
         if (RobotMap.opticalEncoder.get() == 5)
         {
-          gripper.setGripperSpeed(0.8);
+          gripper.setGripperSpeed(-0.8);
         }
         else{
-          gripper.setGripperSpeed(1);
+          gripper.setGripperSpeed(-1);
         }
         break;
       }
@@ -57,10 +57,10 @@ public class MoveGripperToFloor extends Command {
         opticAmount = 3;
         if (RobotMap.opticalEncoder.get() == 5)
         {
-          gripper.setGripperSpeed(0.8);
+          gripper.setGripperSpeed(-0.8);
         }
         else{
-          gripper.setGripperSpeed(1);
+          gripper.setGripperSpeed(-1);
         }
         break;
       }

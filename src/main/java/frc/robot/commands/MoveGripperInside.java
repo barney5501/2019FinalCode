@@ -32,13 +32,13 @@ public class MoveGripperInside extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    gripper.setGripperSpeed(-1);
+    gripper.setGripperSpeed(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut() || RobotMap.gripperSwitch.get() || Gripper.gripperStatus == Gripper.GripperStatus.Top;
+    return isTimedOut() || RobotMap.gripperSwitch.get();
   }
 
   // Called once after isFinished returns true

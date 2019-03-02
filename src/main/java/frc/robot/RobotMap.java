@@ -90,9 +90,10 @@ rollerGripper = new Spark(0);
 opticalDigital = new DigitalInput(0);
 gripperSwitch = new DigitalInput(2); 
 opticalEncoder = new Counter(opticalDigital);
-pushPanel = new Solenoid(5);
+pushPanel = new Solenoid(3);
 vacSol = new Solenoid(2); 
 vacumSwitch = new DigitalInput(3);
+compressor = new Compressor(0);
 
 
 // Climb Ports:
