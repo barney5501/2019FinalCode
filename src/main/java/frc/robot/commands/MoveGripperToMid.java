@@ -52,7 +52,7 @@ public class MoveGripperToMid extends Command {
       }
       case Bottom: 
       {
-        opticAmount = 6;
+        opticAmount = 7;
         gripper.setGripperSpeed(1);
         break;
       }

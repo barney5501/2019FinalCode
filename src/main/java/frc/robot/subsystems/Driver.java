@@ -35,7 +35,7 @@ public class Driver extends PIDSubsystem {
   private DifferentialDrive diffDrive;
 
 public Driver(WPI_TalonSRX _driverFrontRight ,WPI_TalonSRX _driverFrontLeft,WPI_VictorSPX _driverFollowerRight , WPI_VictorSPX _driverFollowerLeft, AnalogGyro _gyro){
-  super(0.12,0,0);
+  super(0.1,0,0.3);
   this.gyro = _gyro;
   this.driverFrontRight=_driverFrontRight;
   this.driverFrontLeft=_driverFrontLeft;

@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
+ 
 import java.util.ArrayList;
 
 import edu.wpi.cscore.UsbCamera;
@@ -85,13 +85,6 @@ public class Robot extends TimedRobot {
     initCameras();
     elevator.resetEncoder();
     m_oi = new OI();
-
-
-
-    
-
-
-
     //UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
     //cam0.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
     //UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
@@ -120,6 +113,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().add(new MoveGripperByJoystick());
     RobotMap.vacSol.set(true);
     Scheduler.getInstance().add(new VacuumByMicro());
+    //Scheduler.getInstance().add(new VacuumByMicro());
   }
 
   @Override
@@ -171,7 +165,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("MaxElevatorSpeed", 0.85);
     SmartDashboard.putNumber("MaxGripperSpeed", 1);
     SmartDashboard.putNumber("Climb Wheel Speed", -0.5);
-    SmartDashboard.putNumber("P", 0.006); //Pgyro
+    SmartDashboard.putNumber("P", 0.006); 
     SmartDashboard.putNumber("I", 0.0);
     SmartDashboard.putNumber("D", 0.01);
     SmartDashboard.putNumber("Igyro", 0.1);

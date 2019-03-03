@@ -28,14 +28,16 @@ public class DriveByVision extends Command {
 
   // Called just before this Command runs the first time
   boolean startStraightLine;
+  double visionAngle;
   @Override
   protected void initialize() {
+    visionAngle = Robot.table.getEntry("angle").getDouble(0)*0.75;
     if ((Robot.table.getEntry("angle").getDouble(0) != -999))
     {
     setTimeout(2);
     RobotMap.gyro.reset();
       driver.setAbsoluteTolerance(1);
-      driver.setSetpoint(Robot.table.getEntry("angle").getDouble(0)*0.75);
+      driver.setSetpoint(visionAngle);
       SmartDashboard.putNumber("Vision Angle * 0.75", Robot.table.getEntry("angle").getDouble(0)*0.75);
       driver.setOutputRange(-0.8,0.8);
       driver.getPIDController().setPID(SmartDashboard.getNumber("Pgyro",0),SmartDashboard.getNumber("Igyro",0),SmartDashboard.getNumber("Dgyro",0));
@@ -43,7 +45,6 @@ public class DriveByVision extends Command {
       Robot.visionFlag = true;
       startStraightLine = true;
       Driver.drivingStraightSpeed = 0;
-      driver.enable();
     }
   }
   boolean pidFlag;
@@ -56,10 +57,9 @@ public class DriveByVision extends Command {
       if (pidFlag && startStraightLine)
       {
         driver.disable();
-        gyro.reset();
-        driver.setSetpoint(0);
+        driver.setSetpoint(visionAngle);
         driver.setOutputRange(-0.5,0.5);
-        driver.drivingStraightSpeed = 0.7;
+        driver.drivingStraightSpeed = 0.6;
         driver.enable();
         startStraightLine = false;
       }
