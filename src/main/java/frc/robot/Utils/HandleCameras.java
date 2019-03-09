@@ -33,7 +33,7 @@ public class HandleCameras {
         }
         //Server-URL:http://roborio-team-frc.local:port/?action=stream
         //Therefore the url for the server below is:http://roborio-4586-frc.local:1234/?action=stream
-        this.server = camServerInst.addServer("Handle Cameras Server", 1234); //name, port
+        this.server = camServerInst.addServer("Handle Cameras Server", 5800); //name, port
         this.server.getProperty("compression").set(60);
         // this.server.getProperty("fps").set(30);
         // this.server.getProperty("width").set(320);

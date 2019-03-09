@@ -30,7 +30,8 @@ public class CargoCollector extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  this.gripper.setRollerGripperSpeed(-1);
+    Robot.disableVacumSwitch = true;
+    this.gripper.setRollerGripperSpeed(-1);
     }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,7 +44,7 @@ public class CargoCollector extends Command {
   @Override
   protected void end() {
     this.gripper.setRollerGripperSpeed(0);
-
+    Robot.disableVacumSwitch = false;
   }
 
   // Called when another command which requires one or more of the same
@@ -52,6 +53,7 @@ public class CargoCollector extends Command {
   protected void interrupted() {
     System.out.println("interrupted");
     this.gripper.setRollerGripperSpeed(0);
+    Robot.disableVacumSwitch = false;
 
   }
 }

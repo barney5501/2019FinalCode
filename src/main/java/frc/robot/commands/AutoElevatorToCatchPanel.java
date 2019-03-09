@@ -16,6 +16,6 @@ public class AutoElevatorToCatchPanel extends CommandGroup {
   public AutoElevatorToCatchPanel() {
     addSequential(new MoveToFloor());
     addSequential(new ResetElevatorEncoder());
-    addSequential(new MoveElevatorToHeight(-400));
+    addSequential(new MoveElevatorToHeight(-480));
   }
 }

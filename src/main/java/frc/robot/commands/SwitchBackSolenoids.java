@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.Climb;
 
 public class SwitchBackSolenoids extends Command {
@@ -22,13 +23,16 @@ public class SwitchBackSolenoids extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    System.out.println("low");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     climb.SwitchBackSolenoids();
+    System.out.print(RobotMap.solenoidBackLeft.get().toString());
   }
+
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

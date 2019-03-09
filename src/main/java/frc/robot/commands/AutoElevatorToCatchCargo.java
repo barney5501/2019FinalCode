@@ -16,6 +16,6 @@ public class AutoElevatorToCatchCargo extends CommandGroup {
   public AutoElevatorToCatchCargo() {
     addSequential(new MoveToFloor());
     addSequential(new ResetElevatorEncoder());
-    addSequential(new MoveElevatorToHeight(-150));
+    addSequential(new MoveElevatorToHeight(-250));
   }
 }

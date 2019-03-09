@@ -66,10 +66,10 @@ public class OI {
     start = new JoystickButton(joystickDriver, 7);
      
     joystickOperator = new Joystick(1);
-    btn6 = new JoystickButton(joystickOperator,1);
+    btn6 = new JoystickButton(joystickOperator,8);
     btn5 = new JoystickButton(joystickOperator,4);
-    btn3 = new JoystickButton(joystickOperator,5);
-    btn8 = new JoystickButton(joystickOperator, 6);
+    btn3 = new JoystickButton(joystickOperator,6);
+    btn8 = new JoystickButton(joystickOperator, 5);
     
     consoleOperator = new Joystick(2);
     consoleA = new JoystickButton(consoleOperator,3); 
@@ -84,10 +84,10 @@ public class OI {
     a.whenPressed(new SwitchCameras());
     b.whenPressed(new PanelArm());
     x.whenPressed(new VacuumMaker());
-    rb.whileHeld(new ShootCargo());
-    lb.whileHeld(new CargoCollector());
+    lb.whileHeld(new ShootCargo());
+    rb.whileHeld(new CargoCollector());
 
-    btn6.whileHeld(new ActivateClimbWheel());
+    btn6.whenPressed(new SwitchCompressor());
     btn5.whenPressed(new SwitchAllSolenoids()); 
     btn3.whenPressed(new SwitchBackSolenoids());
     btn8.whenPressed(new SwitchFrontSolenoids());

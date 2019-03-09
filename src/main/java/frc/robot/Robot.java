@@ -84,11 +84,13 @@ public class Robot extends TimedRobot {
     climbingFlag = false;
     initCameras();
     elevator.resetEncoder();
-    m_oi = new OI();
     //UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture(0);
     //cam0.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
     //UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
     //cam1.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
+    m_oi = new OI();
+    RobotMap.gyro.calibrate();
+    climb.setRevers();
   }
 
   @Override
@@ -111,8 +113,8 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().add(new ArcadeDrive());
     Scheduler.getInstance().add(new LiftByJoystick());
     Scheduler.getInstance().add(new MoveGripperByJoystick());
-    RobotMap.vacSol.set(true);
     Scheduler.getInstance().add(new VacuumByMicro());
+    SmartDashboardInit();
     //Scheduler.getInstance().add(new VacuumByMicro());
   }
 
@@ -120,12 +122,13 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     //Starts our scheduler so we could use the joysticks
     Scheduler.getInstance().run();
+    SmartDashboardPerodic();
   }
 
   @Override
   public void teleopInit() {
     elevator.resetEncoder();
-    RobotMap.compressor.stop();
+    RobotMap.compressor.enabled();
     climbingFlag = false;
     disableVacumSwitch = false;
     commandFlag = false;
@@ -184,6 +187,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Vacuum Status", !RobotMap.vacSol.get());
     SmartDashboard.putBoolean("Elevator Floor Switch", RobotMap.elevatorMicFloor.get());
     SmartDashboard.putString("Gripper Status", Gripper.gripperStatus.toString());
+    SmartDashboard.putBoolean("Climbing Optic", RobotMap.checkIfNeedToCloseLeft.get());
     //Those are values we want to print during testing ->
 
     //SmartDashboard.putNumber("Elevator Encoder", RobotMap.elevatorTalonR.getSelectedSensorPosition(0));

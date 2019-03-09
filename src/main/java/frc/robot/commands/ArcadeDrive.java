@@ -7,11 +7,14 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Climb;
 // import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Driver;
 
@@ -20,11 +23,13 @@ public class ArcadeDrive extends Command {
   private OI oi;
   private double speed;
   private double rotation;
+  private Climb climb;
   private double k; //speed from Smartdashboard
 
   public ArcadeDrive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    this.climb = Robot.climb;
     this.driver = Robot.driver;
     this.oi = Robot.m_oi;
   }
@@ -71,16 +76,39 @@ public class ArcadeDrive extends Command {
     {
         this.speed *= 0.6;
     }
+    /*
     if (Robot.disableVacumSwitch)
     {
-      this.speed *= 0.5/SmartDashboard.getNumber("MaxDrivingSpeed", 0.7);
+      this.speed *= 0.4/SmartDashboard.getNumber("MaxDrivingSpeed", 0.7);
       this.driver.arcadeDrive(speed, 0);
       RobotMap.moveClimbWheel.set(speed);
       if (Math.abs(this.speed) > 0.2)
       {
         Robot.climbingFlag = true;
       }
-    }
+
+      if(climb.canCloseFrontSolenoids()){
+          oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0.7 );
+          oi.joystickDriver.setRumble(RumbleType.kRightRumble,0.7 );
+          }
+          else if(climb.canCloseFrontSolenoid()){
+            oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0.9 );
+            oi.joystickDriver.setRumble(RumbleType.kRightRumble,0.9 );
+            }
+          else if(climb.canCloseBackSolenoid() && climb.canCloseFrontSolenoids()){
+            oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0.4 );
+            oi.joystickDriver.setRumble(RumbleType.kRightRumble,0.4 );
+    
+          }
+          else{
+             oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0 );
+            oi.joystickDriver.setRumble(RumbleType.kRightRumble,0 );
+    
+
+          }
+
+         }
+         */
     if (!Robot.visionFlag)
       this.driver.arcadeDrive(speed, rotation);
   }

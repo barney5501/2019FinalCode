@@ -9,14 +9,12 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
@@ -34,7 +32,7 @@ public class RobotMap {
   public static Solenoid solenoidFrontRight;
   public static Solenoid solenoidFrontLeft;
   public static Solenoid solenoidBackRight;
-  public static Solenoid solenoidBackLeft;
+  public static DoubleSolenoid solenoidBackLeft;
   public static WPI_VictorSPX moveClimbWheel;
   public static DigitalInput checkIfNeedToCloseLeft;
   public static DigitalInput checkIfNeedToCloseRight;
@@ -97,12 +95,12 @@ compressor = new Compressor(0);
 
 
 // Climb Ports:
-solenoidFrontRight = new Solenoid(1);
-solenoidFrontLeft = new Solenoid(6);
-solenoidBackRight = new Solenoid(0);
-solenoidBackLeft = new Solenoid(7);
+solenoidFrontRight = new Solenoid(6);
+solenoidFrontLeft = new Solenoid(4);
+solenoidBackRight = new Solenoid(7);
+solenoidBackLeft = new DoubleSolenoid(0,1);
 moveClimbWheel = new WPI_VictorSPX(4);
-checkIfNeedToCloseLeft = new DigitalInput(1);
+checkIfNeedToCloseLeft = new DigitalInput(7);
 checkIfNeedToCloseRight = new DigitalInput(4);
 checkIfNeedToCloseBackWheel = new DigitalInput(5);
   }
