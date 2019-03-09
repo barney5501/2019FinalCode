@@ -53,6 +53,7 @@ public class OI {
     public JoystickButton btn5; //All solenoids are opening
     public JoystickButton btn3; //Back solenoids are closing
     public JoystickButton btn8;
+    public JoystickButton btn7;
 
     public OI(){
     //This sets the buttons to their location on the joystick
@@ -70,6 +71,7 @@ public class OI {
     btn5 = new JoystickButton(joystickOperator,4);
     btn3 = new JoystickButton(joystickOperator,6);
     btn8 = new JoystickButton(joystickOperator, 5);
+    btn7 = new JoystickButton(joystickOperator, 7);
     
     consoleOperator = new Joystick(2);
     consoleA = new JoystickButton(consoleOperator,3); 
@@ -89,9 +91,10 @@ public class OI {
 
     btn6.whenPressed(new SwitchCompressor());
     btn5.whenPressed(new SwitchAllSolenoids()); 
-    btn3.whenPressed(new SwitchBackSolenoids());
-    btn8.whenPressed(new SwitchFrontSolenoids());
-    
+    btn3.whenPressed(new SwitchFrontSolenoids());
+    btn8.whenPressed(new SwitchBackSolenoids()); //SwitchBackSolenoids
+    btn7.whileHeld(new ActivateClimbWheel());
+
     consoleA.whenPressed(new MoveGripperInside());
     consoleD.whenPressed(new MoveGripperToMid());
     consoleE.whenPressed(new MoveGripperToFloor());

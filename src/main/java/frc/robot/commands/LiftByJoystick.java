@@ -51,7 +51,7 @@ public class LiftByJoystick extends Command {
 
     if (!Robot.commandFlag && Math.abs(this.elevatorSpeed) < 0.1) {
       if (flag == false) {
-        elevator.setElevatorSpeed(0.05);
+        elevator.setElevatorSpeed(0.056);
         flag = true;
       }
     } else if (!Robot.commandFlag) {

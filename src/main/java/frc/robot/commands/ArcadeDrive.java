@@ -46,8 +46,6 @@ public class ArcadeDrive extends Command {
     
     this.speed = (this.oi.joystickDriver.getRawAxis(1) * SmartDashboard.getNumber("MaxDrivingSpeed", 0.7));
     this.rotation = (this.oi.joystickDriver.getRawAxis(4) * SmartDashboard.getNumber("MaxRotationSpeed", 0.7));
-
-
     k = 1 - SmartDashboard.getNumber("MaxDrivingSpeed", 0.7);
 
     if (speed < 0)
@@ -76,39 +74,18 @@ public class ArcadeDrive extends Command {
     {
         this.speed *= 0.6;
     }
-    /*
-    if (Robot.disableVacumSwitch)
+    
+    if (Robot.climbSolFlag)
     {
-      this.speed *= 0.4/SmartDashboard.getNumber("MaxDrivingSpeed", 0.7);
-      this.driver.arcadeDrive(speed, 0);
+      this.speed *= 0.5/SmartDashboard.getNumber("MaxDrivingSpeed", 0.7);
+      this.driver.arcadeDrive(speed+0.1, 0);
       RobotMap.moveClimbWheel.set(speed);
       if (Math.abs(this.speed) > 0.2)
       {
         Robot.climbingFlag = true;
       }
-
-      if(climb.canCloseFrontSolenoids()){
-          oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0.7 );
-          oi.joystickDriver.setRumble(RumbleType.kRightRumble,0.7 );
-          }
-          else if(climb.canCloseFrontSolenoid()){
-            oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0.9 );
-            oi.joystickDriver.setRumble(RumbleType.kRightRumble,0.9 );
-            }
-          else if(climb.canCloseBackSolenoid() && climb.canCloseFrontSolenoids()){
-            oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0.4 );
-            oi.joystickDriver.setRumble(RumbleType.kRightRumble,0.4 );
-    
-          }
-          else{
-             oi.joystickDriver.setRumble(RumbleType.kLeftRumble,0 );
-            oi.joystickDriver.setRumble(RumbleType.kRightRumble,0 );
-    
-
-          }
-
-         }
-         */
+    }
+         
     if (!Robot.visionFlag)
       this.driver.arcadeDrive(speed, rotation);
   }

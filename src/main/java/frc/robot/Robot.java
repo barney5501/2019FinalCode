@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Utils.HandleCameras;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.ClimbingOptic;
 import frc.robot.commands.LiftByJoystick;
 import frc.robot.commands.LightControl;
 import frc.robot.commands.MoveGripperByJoystick;
@@ -53,6 +54,7 @@ public class Robot extends TimedRobot {
   public static boolean visionFlag;
   public static boolean disableVacumSwitch;
   public static boolean climbingFlag;
+  public static boolean climbSolFlag;
   public static HandleCameras handleCameras;
   public static I2C i2c;
   Command m_autonomousCommand;
@@ -63,6 +65,7 @@ public class Robot extends TimedRobot {
     RobotMap.Init();
     i2c = RobotMap.i2c;
     ds = m_ds;
+    this.climbSolFlag = false;
     //Connects the subsystems to the RobotMap motors and sensors.
     table = NetworkTableInstance.getDefault().getTable("imgProc");
     gripper = new Gripper(RobotMap.moveGripper, RobotMap.rollerGripper, RobotMap.opticalEncoder, RobotMap.pushPanel,
@@ -89,6 +92,8 @@ public class Robot extends TimedRobot {
     //UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
     //cam1.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30);
     m_oi = new OI();
+    m_oi.joystickDriver.setRumble(RumbleType.kRightRumble, 0);
+    m_oi.joystickDriver.setRumble(RumbleType.kLeftRumble, 0);
     RobotMap.gyro.calibrate();
     climb.setRevers();
   }
@@ -137,6 +142,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+
     SmartDashboardInit();
     //same as the auto function
     RobotMap.elevatorTalonL.setSelectedSensorPosition(0, 0, 10);
@@ -144,6 +151,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().add(new LiftByJoystick());
     Scheduler.getInstance().add(new MoveGripperByJoystick());
     Scheduler.getInstance().add(new VacuumByMicro());
+    Scheduler.getInstance().add(new ClimbingOptic());
 
   }
   public static double time = 0;
