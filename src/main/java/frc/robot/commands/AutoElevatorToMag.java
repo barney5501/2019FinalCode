@@ -9,13 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class AutoElevatorToCatchPanel extends CommandGroup {
+public class AutoElevatorToMag extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public AutoElevatorToCatchPanel() {
+  public AutoElevatorToMag() {
     addSequential(new MoveToFloor());
-    addSequential(new ResetElevatorEncoder());
-    addSequential(new MoveElevatorToHeight(-450));
+    addSequential(new MoveToMagSensor());
   }
 }

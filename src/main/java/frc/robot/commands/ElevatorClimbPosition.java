@@ -7,36 +7,33 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
+import frc.robot.subsystems.Elevator;
 
-public class SwitchCompressor extends Command {
-
-  public SwitchCompressor() {
+public class ElevatorClimbPosition extends Command {
+  Elevator elevator;
+  public ElevatorClimbPosition() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    elevator = Robot.elevator;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if(RobotMap.compressor.enabled())
-      RobotMap.compressor.stop();
-    else
-      RobotMap.compressor.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    elevator.setElevatorSpeed(-0.4);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return elevator.getElevatorMicFloor() || elevator.getEncoderPosition() < -400;
   }
 
   // Called once after isFinished returns true

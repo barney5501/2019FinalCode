@@ -47,8 +47,6 @@ public class LiftByJoystick extends Command {
   @Override
   protected void execute() {
     this.elevatorSpeed = (this.oi.joystickOperator.getRawAxis(1) * SmartDashboard.getNumber("MaxElevatorSpeed", 0.9));
-    
-
     if (!Robot.commandFlag && Math.abs(this.elevatorSpeed) < 0.1) {
       if (flag == false) {
         elevator.setElevatorSpeed(0.056);
@@ -58,21 +56,23 @@ public class LiftByJoystick extends Command {
       this.elevator.setElevatorSpeed(elevatorSpeed);
       flag = false;
     }
-    if (Robot.climbingFlag && !climbStart)
+
+    //climb sequence
+    if (Robot.climbingFlag && !climbStart) 
     {
       time.start();
       climbStart = true;
     }
     if (climbStart && time.get() < 1)
     {
-      this.elevator.setElevatorSpeed(0.15);
+      this.elevator.setElevatorSpeed(0.2);
     }
-    else if (time.get() > 2 && climbStart)
+
+    
+    if (RobotMap.elevatorMicFloor.get())
     {
-      this.elevator.setElevatorSpeed(0.05);
+      this.elevator.setElevatorSpeed(0);
     }
-
-
   }
 
   // Make this return true when this Command no longer needs to run execute()

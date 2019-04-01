@@ -45,6 +45,7 @@ public class RobotMap {
   public static WPI_VictorSPX elevatorFollowerVictorL;
   public static Compressor compressor;
   public static DigitalInput elevatorMicFloor;
+  public static DigitalInput elevatorMag;
 
   // Gripper Motors:
   public static Spark moveGripper;
@@ -73,6 +74,7 @@ driverFollowerRight.follow(driverFrontRight);
 
 // Elevator Ports:
 elevatorTalonR = new WPI_TalonSRX(2);
+elevatorMag = new DigitalInput(7);
 elevatorFollowerVictorR = new WPI_VictorSPX(2);
 elevatorTalonL = new WPI_TalonSRX(3);
 elevatorFollowerVictorL = new WPI_VictorSPX(3);

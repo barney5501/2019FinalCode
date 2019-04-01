@@ -78,7 +78,7 @@ public class ArcadeDrive extends Command {
     if (Robot.climbSolFlag)
     {
       this.speed *= 0.5/SmartDashboard.getNumber("MaxDrivingSpeed", 0.7);
-      this.driver.arcadeDrive(speed+0.1, 0);
+      this.driver.arcadeDrive(speed, 0);
       RobotMap.moveClimbWheel.set(speed);
       if (Math.abs(this.speed) > 0.2)
       {

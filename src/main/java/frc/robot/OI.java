@@ -86,8 +86,8 @@ public class OI {
     a.whenPressed(new SwitchCameras());
     b.whenPressed(new PanelArm());
     x.whenPressed(new VacuumMaker());
-    lb.whileHeld(new ShootCargo());
-    rb.whileHeld(new CargoCollector());
+    rb.whileHeld(new ShootCargo());
+    lb.whileHeld(new CargoCollector());
 
     btn6.whenPressed(new SwitchCompressor());
     btn5.whenPressed(new SwitchAllSolenoids()); 

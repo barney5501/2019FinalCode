@@ -25,12 +25,13 @@ public class Elevator extends PIDSubsystem {
   private WPI_VictorSPX elevatorFollowerVictorL;
   private Compressor compressor;
   private DigitalInput elevatorMicFloor;
+  public DigitalInput elevatorMDigitalInput;
   public double kP, kD, kI;
   public double heightFromFloor;
 
   // Constractor
   public Elevator(WPI_TalonSRX elevTalR, WPI_VictorSPX elevVicR, WPI_TalonSRX elevTalL, WPI_VictorSPX elevVicL,
-      Compressor comp, DigitalInput elevMicFl) {
+      Compressor comp, DigitalInput elevMicFl,DigitalInput elevatorMDigitalInput) {
     super(0.12,0,0);
     this.elevatorTalonL = elevTalL;
     this.elevatorTalonR = elevTalR;
@@ -38,6 +39,7 @@ public class Elevator extends PIDSubsystem {
     this.elevatorFollowerVictorR = elevVicR;
     this.compressor = comp;
     this.elevatorMicFloor = elevMicFl;
+    this.elevatorMDigitalInput = elevatorMDigitalInput;
 
     this.kP = 0.08;
     this.kI = 0;
@@ -46,11 +48,11 @@ public class Elevator extends PIDSubsystem {
   }
 
   public double getEncoderPosition() {
-    return this.elevatorTalonL.getSelectedSensorPosition(0); // * CONVERT_TICKS_TO_METER;
+    return this.elevatorTalonR.getSelectedSensorPosition(0); // * CONVERT_TICKS_TO_METER;
   }
 
   public double getEncoderVelocity() {
-    return this.elevatorTalonL.getSelectedSensorVelocity(0);
+    return this.elevatorTalonR.getSelectedSensorVelocity(0);
   }
 
   public void resetEncoder() {

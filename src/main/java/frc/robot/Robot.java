@@ -45,7 +45,6 @@ public class Robot extends TimedRobot {
   //our Subsystems ->
   public static Gripper gripper;
   public static Driver driver;
-  public static Compressor compressor;
   public static Elevator elevator;
   public static Climb climb;
   //these are command flags, that help us stop commands under the scheduler
@@ -76,7 +75,7 @@ public class Robot extends TimedRobot {
         RobotMap.solenoidBackLeft, RobotMap.moveClimbWheel, RobotMap.checkIfNeedToCloseLeft,
         RobotMap.checkIfNeedToCloseRight, RobotMap.checkIfNeedToCloseBackWheel);
     elevator = new Elevator(RobotMap.elevatorTalonR, RobotMap.elevatorFollowerVictorR, RobotMap.elevatorTalonL,
-        RobotMap.elevatorFollowerVictorL, RobotMap.compressor, RobotMap.elevatorMicFloor);
+        RobotMap.elevatorFollowerVictorL, RobotMap.compressor, RobotMap.elevatorMicFloor, RobotMap.elevatorMag);
 
     //Sets all the flags to false so we could use the schedulers
     gripper.setPanelPush(false);
@@ -151,7 +150,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().add(new LiftByJoystick());
     Scheduler.getInstance().add(new MoveGripperByJoystick());
     Scheduler.getInstance().add(new VacuumByMicro());
-    Scheduler.getInstance().add(new ClimbingOptic());
+    //Scheduler.getInstance().add(new ClimbingOptic());
 
   }
   public static double time = 0;
@@ -196,6 +195,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Elevator Floor Switch", RobotMap.elevatorMicFloor.get());
     SmartDashboard.putString("Gripper Status", Gripper.gripperStatus.toString());
     SmartDashboard.putBoolean("Climbing Optic", RobotMap.checkIfNeedToCloseLeft.get());
+    SmartDashboard.putBoolean("Gripper Switch", RobotMap.gripperSwitch.get());
     //Those are values we want to print during testing ->
 
     //SmartDashboard.putNumber("Elevator Encoder", RobotMap.elevatorTalonR.getSelectedSensorPosition(0));

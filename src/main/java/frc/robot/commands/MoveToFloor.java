@@ -31,7 +31,7 @@ public class MoveToFloor extends Command {
   @Override
   protected void execute() {
     if (!elevator.getElevatorMicFloor())
-      elevator.setElevatorSpeed(-0.2);
+      elevator.setElevatorSpeed(-0.4);
   }
 
   // Make this return true when this Command no longer needs to run execute()

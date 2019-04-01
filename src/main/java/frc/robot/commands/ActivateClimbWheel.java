@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.Climb;
 
 public class ActivateClimbWheel extends Command {
@@ -28,8 +29,7 @@ public class ActivateClimbWheel extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Start");
-    this.climb.setClimbWheelSpeed(SmartDashboard.getNumber("Climb Wheel Speed", -0.5));
+    RobotMap.moveClimbWheel.set(-0.6);
   }
 
 
@@ -42,13 +42,13 @@ public class ActivateClimbWheel extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    this.climb.setClimbWheelSpeed(0.0);
+    RobotMap.moveClimbWheel.set(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    this.climb.setClimbWheelSpeed(0.0);
+    RobotMap.moveClimbWheel.set(0.0);
   }
 }
