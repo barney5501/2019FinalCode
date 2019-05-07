@@ -24,6 +24,7 @@ public class MoveToFloor extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setTimeout(1);
     Robot.commandFlag = true;
   }
 
@@ -37,7 +38,7 @@ public class MoveToFloor extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return elevator.getElevatorMicFloor();
+    return elevator.getElevatorMicFloor() || isTimedOut();
   }
 
   // Called once after isFinished returns true

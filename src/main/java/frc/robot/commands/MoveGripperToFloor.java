@@ -41,8 +41,8 @@ public class MoveGripperToFloor extends Command {
       case Top:
       {
         System.out.println("TOP");
-        opticAmount = 6;
-        if (RobotMap.opticalEncoder.get() == 5)
+        opticAmount = 10;
+        if (RobotMap.opticalEncoder.get() == 7)
         {
           gripper.setGripperSpeed(-1);
         }

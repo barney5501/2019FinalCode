@@ -14,6 +14,7 @@ import frc.robot.commands.AutoElevatorToCatchCargo;
 import frc.robot.commands.AutoElevatorToCatchPanel;
 import frc.robot.commands.CargoCollector;
 import frc.robot.commands.DriveByVision;
+import frc.robot.commands.ElevatorClimbPosition;
 import frc.robot.commands.MoveElevatorToHeight;
 import frc.robot.commands.MoveGripperInside;
 import frc.robot.commands.MoveGripperToFloor;
@@ -54,6 +55,7 @@ public class OI {
     public JoystickButton btn3; //Back solenoids are closing
     public JoystickButton btn8;
     public JoystickButton btn7;
+    public JoystickButton btn9;
 
     public OI(){
     //This sets the buttons to their location on the joystick
@@ -72,6 +74,7 @@ public class OI {
     btn3 = new JoystickButton(joystickOperator,6);
     btn8 = new JoystickButton(joystickOperator, 5);
     btn7 = new JoystickButton(joystickOperator, 7);
+    btn9 = new JoystickButton(joystickOperator, 3);
     
     consoleOperator = new Joystick(2);
     consoleA = new JoystickButton(consoleOperator,3); 
@@ -89,10 +92,11 @@ public class OI {
     rb.whileHeld(new ShootCargo());
     lb.whileHeld(new CargoCollector());
 
+    btn9.whenPressed(new ElevatorClimbPosition());
     btn6.whenPressed(new SwitchCompressor());
-    btn5.whenPressed(new SwitchAllSolenoids()); 
-    btn3.whenPressed(new SwitchFrontSolenoids());
-    btn8.whenPressed(new SwitchBackSolenoids()); //SwitchBackSolenoids
+    //btn5.whenPressed(new SwitchAllSolenoids()); 
+    //btn3.whenPressed(new SwitchFrontSolenoids());
+    //btn8.whenPressed(new SwitchBackSolenoids()); //SwitchBackSolenoids
     btn7.whileHeld(new ActivateClimbWheel());
 
     consoleA.whenPressed(new MoveGripperInside());

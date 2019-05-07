@@ -5,17 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.Utils;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.Notifier;
 
-public class AutoElevatorToCatchPanel extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
-  public AutoElevatorToCatchPanel() {
-    addSequential(new MoveToFloor());
-    addSequential(new ResetElevatorEncoder());
-    addSequential(new MoveElevatorToHeight(-420));
-  }
+/**
+ * Add your docs here.
+ */
+public class Constants {
+
+    public static String k_path_nameL = "Test.left";
+    public static String k_path_nameR = "Test.right";
+    
+
+    public static final int k_ticks_per_rev = 8192;
+    public  static final double k_wheel_diameter = 0.1524;
+    public  static final double k_max_velocity = 2.33;
+
 }

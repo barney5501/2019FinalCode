@@ -46,14 +46,23 @@ public Driver(WPI_TalonSRX _driverFrontRight ,WPI_TalonSRX _driverFrontLeft,WPI_
   this.diffDrive = new DifferentialDrive(this.leftController, this.rightController);
 }
 
+
+
 public double getSpeedRight(){
-  return this.driverFrontRight.get();
+  return this.driverFrontRight.getSelectedSensorVelocity();
 }
 
 public double getSpeedLeft(){
-  return this.driverFrontLeft.get();
+  return this.driverFrontLeft.getSelectedSensorVelocity();
 }
 
+public static Driver getInstance(){
+  return Robot.driver;
+}
+
+public double getRightEncoderPosition(){
+  return this.driverFrontRight.getSelectedSensorPosition();
+}
 
 public void setSpeedRight(double speed)
 {

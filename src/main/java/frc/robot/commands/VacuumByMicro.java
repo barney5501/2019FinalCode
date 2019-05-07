@@ -23,7 +23,6 @@ public class VacuumByMicro extends Command {
   @Override
   protected void initialize() {
     prevSwitch = true;
-    
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -35,11 +34,13 @@ public class VacuumByMicro extends Command {
       {
           if (RobotMap.vacumSwitch.get())
           { 
+              System.out.println("Vaccum On");
               RobotMap.vacSol.set(false);
               setTimeout(0.5);
           }
           else if (isTimedOut())
           {
+            System.out.println("Vaccum Off");
             RobotMap.vacSol.set(true);
           }
         }

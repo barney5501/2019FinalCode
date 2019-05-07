@@ -26,12 +26,14 @@ public class LiftByJoystick extends Command {
   private OI oi;
   private boolean flag;
   private Timer time;
+  private boolean switchChanged;
 
   public LiftByJoystick() {
     this.elevator = Robot.elevator;
     this.oi = Robot.m_oi;
     flag = false;
     time = new Timer();
+    switchChanged = true;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -67,11 +69,23 @@ public class LiftByJoystick extends Command {
     {
       this.elevator.setElevatorSpeed(0.2);
     }
+    else if(climbStart)
+    {
+      this.elevator.setElevatorSpeed(elevatorSpeed);
+    }
+
 
     
     if (RobotMap.elevatorMicFloor.get())
     {
-      this.elevator.setElevatorSpeed(0);
+      if(switchChanged) {
+        System.out.println("Setting 0 to Elevator 1");
+        this.elevator.setElevatorSpeed(0);
+        elevator.resetEncoder();
+        switchChanged = false;
+        }
+    } else {
+      switchChanged = true;
     }
   }
 

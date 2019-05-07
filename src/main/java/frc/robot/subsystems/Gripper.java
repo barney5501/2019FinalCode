@@ -99,6 +99,7 @@ public class Gripper extends Subsystem {
 
   //switch the vacRight solenoid and vacLeft solenoid state 
   public void switchVac(){
+    System.out.println("Switch Vac");
     this.vacSol.set(!(getVacSol()));
   }
 

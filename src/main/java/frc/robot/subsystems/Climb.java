@@ -90,6 +90,12 @@ public class Climb extends Subsystem {
     this.isExtended = !this.isExtended;
   }
 
+  public void closeAllSolenoinds(){
+    solenoidBackLeft.set(Value.kReverse);
+    solenoidBackRight.set(false);
+    solenoidFrontLeft.set(false);
+    solenoidFrontRight.set(false);
+  }
   
 
   /////////////////////////////////////////////////////////////////////

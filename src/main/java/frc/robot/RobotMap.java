@@ -74,14 +74,14 @@ driverFollowerRight.follow(driverFrontRight);
 
 // Elevator Ports:
 elevatorTalonR = new WPI_TalonSRX(2);
-elevatorMag = new DigitalInput(7);
+elevatorMag = new DigitalInput(1);
 elevatorFollowerVictorR = new WPI_VictorSPX(2);
 elevatorTalonL = new WPI_TalonSRX(3);
 elevatorFollowerVictorL = new WPI_VictorSPX(3);
 compressor = new Compressor(0);
 elevatorFollowerVictorR.follow(elevatorTalonR);
 elevatorFollowerVictorL.follow(elevatorTalonL);
-elevatorMicFloor = new DigitalInput(8);
+elevatorMicFloor = new DigitalInput(9);
 
 // Gripper Ports
 
